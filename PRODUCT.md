@@ -1,7 +1,9 @@
 # Product Spec — TikTok Shop Appeal Rescue
 
 ## The smallest sellable thing
-Not an app. Not a dashboard. A **document delivered after a structured intake**, fulfilled by a human (you) using an AI-assisted drafting workflow to keep hands-on time under ~30–45 minutes per order. This can be sold *today* with a landing page and a payment link — no software build required to prove demand.
+A **self-serve, fully automated document generator** (`site/generator.html`): the customer answers a structured form in their browser and gets a case-readiness score, evidence checklist, and a ready-to-submit appeal letter immediately — assembled by deterministic branching logic (no AI, no backend, no human fulfillment step). Zero recurring cost, zero per-order labor, instant delivery.
+
+**Why not AI-generated per order:** an LLM call per order would also be "automated," but costs money per order and can hallucinate. The same domain knowledge already researched (`fulfillment/violation-playbooks.md`) is rules-based enough to encode directly as branching logic — more reliable, faster, and free to run. See `DECISIONS.md` (2026-09-10).
 
 ## The transformation (per master-prompt §8)
 > "I don't understand what happened, and TikTok's boilerplate response tells me nothing."
@@ -16,20 +18,20 @@ Not an app. Not a dashboard. A **document delivered after a structured intake**,
 
 No DIY toolkit, no Priority rush tier at launch. One product, one price, one decision for a stressed customer to make. Add tiers later only in response to actual customer requests (e.g. "can you go faster?" → reactively price a rush add-on once fulfillment throughput on the base offer is proven).
 
-## Fulfillment workflow (manual, repeatable, documented for consistency)
-See `fulfillment/` directory:
-- `intake-questionnaire.md` — the exact questions asked of every customer (violation type, shop details, timeline, what's already been tried, TikTok's stated reason if given).
-- `violation-playbooks.md` — per-violation-category guidance (what TikTok typically requires as evidence, common root causes, what NOT to say in an appeal) built from the research in `MARKET.md`.
-- `appeal-letter-template.md` — the base structure (Root Cause → Immediate Actions → Preventive Measures, matching TikTok's own stated appeal framework) that gets customized per order.
+## Fulfillment workflow (automated — no human step per order)
+`site/generator.html` encodes the logic from `fulfillment/`:
+- `intake-questionnaire.md` — the question set the generator's form is built from.
+- `violation-playbooks.md` — per-violation-category evidence checklist, common cause, and common-mistake warning, encoded as the `PLAYBOOKS` object in the generator's JS.
+- `appeal-letter-template.md` — the Root Cause → Immediate Actions → Preventive Measures structure the generator assembles the final letter from.
 
-This workflow is designed to be followed by a human with AI assistance (e.g., asking an AI assistant to draft the customized letter from the intake answers + the relevant playbook) — no custom software needed. It becomes the spec for a self-serve web tool later, if and only if demand is proven (service → product, principle #36).
+These `fulfillment/` docs remain the source-of-truth spec — update them first when the underlying policy/evidence guidance changes, then mirror the change into `generator.html`'s `PLAYBOOKS` object.
 
 ## What this product is NOT
 - Not legal advice, and the landing page/delivery must say so explicitly (liability + honesty). This is operational/administrative help with a platform's internal appeal process, not legal representation.
 - Not a guarantee of reinstatement — TikTok makes the final decision. The offer is "the best possible appeal, fast," not "guaranteed to work." This must be stated clearly to avoid overpromising and refund disputes.
 
 ## Delivery mechanics
-- Payment: Stripe Payment Link (already set up).
-- Intake: a simple form (Google Form or Tally, free tier) collecting the questionnaire answers.
-- Delivery: a Google Doc or PDF sent to the customer's email within the promised window.
-- No hosting, database, or backend needed for this version.
+- Payment: Stripe Payment Link, one-time $149, post-payment redirect set to `generator.html`.
+- Intake + diagnosis + letter: all handled client-side, instantly, in `generator.html` — no form submission, no email round-trip.
+- Delivery: the customer copies the letter or uses the browser's Print → Save as PDF from the tool itself.
+- Hosting: static only (GitHub Pages, free) — no database or backend.

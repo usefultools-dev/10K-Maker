@@ -52,9 +52,10 @@
     <h1>Your TikTok Shop got <span>suspended</span>.<br>We'll tell you exactly why — and write your appeal.</h1>
     <p class="sub">A fast, affordable diagnosis and ready-to-submit appeal letter, built specifically for TikTok Shop's appeal process. Not a $1,500 law firm. Not a generic template.</p>
     <a class="cta" href="#pricing">Get my appeal reviewed — $149</a>
-    <div class="cta-note">24–48 hour delivery · Not legal advice · No reinstatement guarantee (see FAQ)</div>
+    <div class="cta-note">Instant — generated the moment you pay · Not legal advice · No reinstatement guarantee (see FAQ)</div>
     <!-- Simplified to a single offer (2026-09-10): the original 3-tier menu (DIY $39 / Rescue $149 / Priority $249)
-         was cut before any customer had validated demand for the base offer. See DECISIONS.md. -->
+         was cut before any customer had validated demand for the base offer. See DECISIONS.md.
+         Automated as a self-serve generator (2026-09-10): see generator.html and DECISIONS.md. -->
   </div>
 </header>
 
@@ -62,9 +63,9 @@
   <div class="wrap">
     <h2>How it works</h2>
     <div class="steps">
-      <div class="step"><div class="num">STEP 1</div><h3>Tell us what happened</h3><p>A short form: your violation notice, timeline, and what you've already tried.</p></div>
-      <div class="step"><div class="num">STEP 2</div><h3>We diagnose it</h3><p>We match your case against TikTok Shop's stated appeal requirements for that exact violation type.</p></div>
-      <div class="step"><div class="num">STEP 3</div><h3>You get a ready appeal</h3><p>A plain-English diagnosis, your missing-evidence checklist, and a customized letter — in 24–48h.</p></div>
+      <div class="step"><div class="num">STEP 1</div><h3>Pay once</h3><p>$149, one-time — you're taken straight to the appeal builder, no waiting.</p></div>
+      <div class="step"><div class="num">STEP 2</div><h3>Answer a short form</h3><p>Your violation type, timeline, and what you've already tried. Matched instantly against TikTok Shop's stated appeal requirements for that exact category.</p></div>
+      <div class="step"><div class="num">STEP 3</div><h3>Get your appeal immediately</h3><p>A case-readiness score, your missing-evidence checklist, and a ready-to-submit letter — generated on the spot, right in your browser.</p></div>
     </div>
   </div>
 </section>
@@ -80,9 +81,12 @@
           <li>Personalized diagnosis of your specific violation</li>
           <li>Exact evidence checklist for your case</li>
           <li>Custom, ready-to-submit appeal letter</li>
-          <li>24–48 hour delivery</li>
+          <li>Instant — generated the moment you pay</li>
         </ul>
-        <a href="#contact">Start my appeal</a>
+        <!-- TODO once Stripe Payment Link exists: point this at the Stripe link, and set the
+             Payment Link's post-payment redirect to generator.html. Until then it links directly
+             to the tool so it can be tested. -->
+        <a href="generator.html">Start my appeal</a>
       </div>
     </div>
   </div>
@@ -91,7 +95,7 @@
 <section id="contact">
   <div class="wrap">
     <h2>Get started</h2>
-    <p class="sub" style="margin:0 0 20px;text-align:left;max-width:none;">Reply to the message that pointed you here, or email us with a short description of what happened to your shop, and we'll send the intake form.</p>
+    <p class="sub" style="margin:0 0 20px;text-align:left;max-width:none;">Click "Start my appeal" above — you'll pay once ($149) and land straight on the appeal builder. No forms to submit and wait on, no email back-and-forth.</p>
   </div>
 </section>
 
@@ -99,9 +103,9 @@
   <div class="wrap">
     <h2>Questions</h2>
     <details><summary>Is this legal advice?</summary><p>No. We help you prepare the strongest possible appeal using TikTok Seller Center's own stated framework. We are not attorneys and this isn't legal representation.</p></details>
-    <details><summary>Do you guarantee reinstatement?</summary><p>No one can guarantee that — TikTok makes the final decision. We guarantee a specific, evidence-backed appeal within your chosen turnaround time, not a boilerplate response.</p></details>
+    <details><summary>Do you guarantee reinstatement?</summary><p>No one can guarantee that — TikTok makes the final decision. We guarantee a specific, evidence-backed appeal generated instantly from your own facts, not a boilerplate response.</p></details>
     <details><summary>How is this different from a $15 template?</summary><p>Templates are generic. We diagnose your specific violation and evidence gaps, then write your letter around your actual facts.</p></details>
-    <details><summary>What if I'm not satisfied?</summary><p>If we fail to deliver a personalized diagnosis within the promised window, you get a full refund.</p></details>
+    <details><summary>What if I'm not satisfied?</summary><p>If the tool fails to generate a personalized diagnosis and letter for you, you get a full refund.</p></details>
   </div>
 </section>
 

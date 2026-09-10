@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Appeal — TikTok Shop Appeal Rescue</title>
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#12151c; --panel2:#171b24; --text:#eef1f6; --muted:#9aa4b2;
+    --accent:#ff2e63; --accent2:#ffd23f; --border:#232733; --good:#3ddc97; --warn:#ffd23f; --bad:#ff5c5c;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;}
+  .wrap{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+  a.back{color:var(--muted);text-decoration:none;font-size:14px;}
+  h1{font-size:clamp(24px,4vw,32px);margin:20px 0 8px;font-weight:800;}
+  .lede{color:var(--muted);margin:0 0 32px;}
+  fieldset{border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin:0 0 20px;background:var(--panel);}
+  legend{padding:0 8px;font-weight:700;font-size:13px;color:var(--accent2);text-transform:uppercase;letter-spacing:.04em;}
+  label{display:block;font-size:14px;font-weight:600;margin:14px 0 6px;}
+  label:first-of-type{margin-top:0;}
+  .hint{color:var(--muted);font-size:12.5px;margin:-2px 0 6px;}
+  select,textarea,input[type=text],input[type=date]{
+    width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);
+    border-radius:8px;padding:10px 12px;font-size:14.5px;font-family:inherit;
+  }
+  textarea{min-height:70px;resize:vertical;}
+  .radio-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;}
+  .radio-row label{display:flex;align-items:center;gap:6px;font-weight:500;margin:0;font-size:14px;}
+  .checklist label{display:flex;align-items:flex-start;gap:8px;font-weight:500;font-size:14px;margin:10px 0;}
+  .checklist input{margin-top:3px;}
+  .cta-btn{display:block;width:100%;background:var(--accent);color:#fff;border:none;font-weight:700;
+    font-size:16px;padding:16px;border-radius:10px;cursor:pointer;margin-top:8px;}
+  .cta-btn:hover{filter:brightness(1.08);}
+  #output{display:none;margin-top:36px;}
+  .score-box{display:flex;align-items:center;gap:18px;background:var(--panel);border:1px solid var(--border);
+    border-radius:12px;padding:20px;margin-bottom:20px;}
+  .score-num{font-size:40px;font-weight:800;}
+  .score-bar{flex:1;height:10px;background:var(--panel2);border-radius:99px;overflow:hidden;}
+  .score-fill{height:100%;background:var(--accent);}
+  .score-label{color:var(--muted);font-size:13px;}
+  .evidence-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);font-size:14.5px;}
+  .evidence-item:last-child{border-bottom:none;}
+  .tag-good{color:var(--good);font-weight:700;}
+  .tag-bad{color:var(--bad);font-weight:700;}
+  .mistake-box{background:rgba(255,210,63,.08);border:1px solid var(--accent2);border-radius:10px;padding:14px 16px;
+    font-size:13.5px;color:var(--text);margin:16px 0;}
+  .mistake-box b{color:var(--accent2);}
+  #letterBox{width:100%;min-height:380px;background:var(--panel2);border:1px solid var(--border);border-radius:10px;
+    color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;padding:16px;
+    white-space:pre-wrap;}
+  .actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+  .actions button{flex:1;min-width:140px;background:var(--panel2);border:1px solid var(--border);color:var(--text);
+    font-weight:700;padding:12px;border-radius:9px;cursor:pointer;font-size:14px;}
+  .actions button:hover{border-color:var(--accent);}
+  .disclaimer{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;
+    color:var(--muted);font-size:12.5px;margin-top:16px;}
+  @media print{
+    a.back,fieldset,.lede,h1{display:none!important;}
+    body{background:#fff;color:#000;}
+    #output{display:block!important;margin-top:0;}
+    .score-box,.mistake-box,.actions,.disclaimer,.evidence-item{display:none!important;}
+    #letterBox{border:none;background:#fff;color:#000;font-size:12px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <a class="back" href="index.html">&larr; Back</a>
+  <h1>Build your appeal</h1>
+  <p class="lede">Answer honestly and specifically — every field below feeds directly into your evidence checklist and appeal letter. This runs entirely in your browser: nothing you type is sent anywhere.</p>
+
+  <form id="appealForm">
+    <fieldset>
+      <legend>The violation</legend>
+      <label for="violationType">What type of violation is this?</label>
+      <select id="violationType" required>
+        <option value="">Select one…</option>
+        <option value="ip">IP / Counterfeit</option>
+        <option value="prohibited">Prohibited / restricted product</option>
+        <option value="misleading">Misleading content / listing</option>
+        <option value="shipping">Shipping / fulfillment violation</option>
+        <option value="verification">Account verification / identity issue</option>
+      </select>
+
+      <label for="shopName">Shop name / seller ID</label>
+      <input type="text" id="shopName" placeholder="e.g. Acme Home Goods">
+
+      <label for="whatHappened">What exactly happened?</label>
+      <textarea id="whatHappened" placeholder="e.g. My shop was suspended after a listing for [product] was flagged."></textarea>
+
+      <label for="violationText">Exact violation notice text from TikTok (paste it if you have it — this is the single most important field)</label>
+      <textarea id="violationText" placeholder="Paste TikTok's exact wording here"></textarea>
+
+      <label for="dateHappened">When did this happen?</label>
+      <input type="date" id="dateHappened">
+
+      <label for="priorAppeals">Have you already submitted an appeal?</label>
+      <select id="priorAppeals">
+        <option value="0">No, this is my first appeal</option>
+        <option value="1">Yes, one attempt already (TikTok typically allows 2 total)</option>
+        <option value="2">Yes, two or more attempts</option>
+      </select>
+
+      <label for="caseRef">Case / reference number (if provided)</label>
+      <input type="text" id="caseRef" placeholder="Optional">
+    </fieldset>
+
+    <fieldset>
+      <legend>Your read on it</legend>
+      <label>Do you believe the violation is accurate, a mistake, or unclear?</label>
+      <div class="radio-row">
+        <label><input type="radio" name="honestRead" value="accurate" checked> Accurate</label>
+        <label><input type="radio" name="honestRead" value="mistake"> A mistake</label>
+        <label><input type="radio" name="honestRead" value="unclear"> Unclear</label>
+      </div>
+
+      <label for="stepsTaken">What steps have you already taken to fix the issue? (one per line — these become your "Immediate Actions Taken" bullets)</label>
+      <textarea id="stepsTaken" placeholder="e.g.&#10;Removed the flagged listing&#10;Replaced product photos with originals"></textarea>
+
+      <label for="preventive">What will you change going forward so this doesn't happen again? (be concrete — this is the section most appeals get wrong)</label>
+      <textarea id="preventive" placeholder="e.g. Implemented a pre-listing compliance checklist reviewed before every new product upload."></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Evidence checklist</legend>
+      <p class="hint">Select a violation type above to see exactly what TikTok typically wants to see for your case.</p>
+      <div id="evidenceChecklist" class="checklist"><p class="hint">Waiting for violation type…</p></div>
+    </fieldset>
+
+    <button type="submit" class="cta-btn">Generate my appeal</button>
+  </form>
+
+  <div id="output">
+    <div class="score-box">
+      <div>
+        <div class="score-num" id="scoreNum">0</div>
+        <div class="score-label">/ 100 case readiness</div>
+      </div>
+      <div class="score-bar"><div class="score-fill" id="scoreFill" style="width:0%"></div></div>
+    </div>
+
+    <div id="evidenceResult"></div>
+
+    <div class="mistake-box" id="mistakeBox"></div>
+
+    <h3 style="margin-bottom:6px;">Your appeal letter</h3>
+    <p class="hint" style="margin-top:0;">Review every claim before submitting — only include documentation you can actually provide.</p>
+    <div id="letterBox"></div>
+    <div class="actions">
+      <button type="button" id="copyBtn">Copy letter</button>
+      <button type="button" id="printBtn">Print / Save as PDF</button>
+    </div>
+
+    <div class="disclaimer">
+      This letter is drafted based on the information you provided and general patterns in TikTok Shop's stated appeal framework. It is not legal advice, and we cannot guarantee TikTok's decision. TikTok Shop Appeal Rescue is an independent service and is not affiliated with, endorsed by, or operated by TikTok or ByteDance.
+    </div>
+  </div>
+</div>
+
+<script>
+const PLAYBOOKS = {
+  ip: {
+    label: "IP / Counterfeit violation",
+    cause: "Listing images, brand names, or logos matched a trademark or copyright the seller doesn't hold rights to, or a rights-holder complaint was filed.",
+    evidence: [
+      "Proof of authenticity (invoices from authorized suppliers)",
+      "Licensing agreement, if applicable",
+      "Documentation the listing has been permanently removed or edited to no longer reference the brand"
+    ],
+    mistake: "Arguing the product is \"basically\" allowed instead of directly addressing the specific IP claim. Appeals need to show the exact offending content has been removed, not just intent to comply."
+  },
+  prohibited: {
+    label: "Prohibited / restricted product",
+    cause: "The product falls into a category TikTok Shop restricts or bans outright in this region/category.",
+    evidence: [
+      "Proof the listing has been removed or reclassified",
+      "Documentation supporting the correct category, if the categorization was wrong",
+      "Screenshot of the current (corrected) listing state"
+    ],
+    mistake: "Re-listing the same product without addressing why it was flagged — likely to trigger a second, harder-to-reverse violation."
+  },
+  misleading: {
+    label: "Misleading content / listing",
+    cause: "Product images, claims, or descriptions didn't match the actual item (exaggerated claims, stock photos, misleading pricing/discount claims).",
+    evidence: [
+      "Corrected listing screenshots",
+      "Updated photos of the actual product",
+      "A clear before/after showing the fix"
+    ],
+    mistake: "Only changing the text and not the images, or vice versa — TikTok's review looks at the whole listing."
+  },
+  shipping: {
+    label: "Shipping / fulfillment violation",
+    cause: "Late shipments, a high cancellation rate, or fulfillment SLA breaches.",
+    evidence: [
+      "Data/logs showing improved fulfillment times",
+      "Evidence of the operational fix (new supplier, staffing, processing change)",
+      "Evidence the delay was outside your control (e.g. a carrier-wide disruption), if applicable"
+    ],
+    mistake: "Blaming the carrier without showing a concrete operational change going forward — \"preventive measures\" is the weakest part of most seller appeals here."
+  },
+  verification: {
+    label: "Account verification / identity issue",
+    cause: "Mismatched business/personal ID documents, incomplete tax/bank info, or a flagged identity-verification step.",
+    evidence: [
+      "Clear, unedited copies of the exact documents requested",
+      "Documents matching the exact name/business registered on the account",
+      "A short note explaining any name/entity discrepancy, if one exists"
+    ],
+    mistake: "Submitting the same rejected document twice without addressing the specific mismatch reason."
+  }
+};
+
+const typeSelect = document.getElementById('violationType');
+const checklistDiv = document.getElementById('evidenceChecklist');
+
+typeSelect.addEventListener('change', () => {
+  const pb = PLAYBOOKS[typeSelect.value];
+  if (!pb) { checklistDiv.innerHTML = '<p class="hint">Waiting for violation type…</p>'; return; }
+  checklistDiv.innerHTML = pb.evidence.map((item, i) =>
+    `<label><input type="checkbox" class="evidenceCheck" value="${item.replace(/"/g,'&quot;')}"> ${item}</label>`
+  ).join('');
+});
+
+document.getElementById('appealForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const type = typeSelect.value;
+  const pb = PLAYBOOKS[type];
+  if (!pb) { typeSelect.focus(); return; }
+
+  const data = {
+    shopName: document.getElementById('shopName').value,
+    whatHappened: document.getElementById('whatHappened').value,
+    violationText: document.getElementById('violationText').value,
+    caseRef: document.getElementById('caseRef').value,
+    stepsTaken: document.getElementById('stepsTaken').value,
+    preventive: document.getElementById('preventive').value,
+    honestRead: document.querySelector('input[name=honestRead]:checked').value
+  };
+
+  const allChecks = Array.from(document.querySelectorAll('.evidenceCheck'));
+  const checkedItems = allChecks.filter(c => c.checked).map(c => c.value);
+
+  // Score: 30 pts exact violation text, 30 pts concrete steps taken, 40 pts spread across evidence items
+  let score = 0;
+  if (data.violationText.trim().length > 10) score += 30;
+  if (data.stepsTaken.trim().length > 10) score += 30;
+  score += Math.round((checkedItems.length / pb.evidence.length) * 40);
+  score = Math.min(100, score);
+
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('scoreFill').style.width = score + '%';
+  document.getElementById('scoreFill').style.background = score >= 70 ? 'var(--good)' : score >= 40 ? 'var(--warn)' : 'var(--bad)';
+
+  document.getElementById('evidenceResult').innerHTML = pb.evidence.map(item => {
+    const have = checkedItems.includes(item);
+    return `<div class="evidence-item"><span class="${have?'tag-good':'tag-bad'}">${have?'✅':'❌'}</span> ${item}</div>`;
+  }).join('');
+
+  document.getElementById('mistakeBox').innerHTML = `<b>Common mistake for this violation type:</b> ${pb.mistake}`;
+
+  const immediateActions = data.stepsTaken.trim()
+    ? data.stepsTaken.split('\n').map(s => s.trim()).filter(Boolean)
+    : ['[Describe the specific corrective steps you have already taken]'];
+
+  const attachedDocs = checkedItems.length ? checkedItems : ['[No supporting documentation selected yet — attach before submitting]'];
+
+  const readFrame = data.honestRead === 'mistake'
+    ? 'We believe this was applied in error and respectfully request review of the specific facts below.'
+    : data.honestRead === 'unclear'
+      ? 'The specific policy basis was not fully clear from the notice, so this appeal addresses the most likely cause based on the violation category.'
+      : 'We acknowledge the underlying issue and have addressed it as follows.';
+
+  const letter = `Re: Appeal — ${data.shopName || '[Shop name]'} — ${pb.label} — ${data.caseRef || '[Case/reference number if provided]'}
+
+ROOT CAUSE
+${data.whatHappened.trim() || '[Describe what happened]'} TikTok's stated reason: "${data.violationText.trim() || '[paste exact violation notice text]'}" ${readFrame}
+
+IMMEDIATE ACTIONS TAKEN
+${immediateActions.map(a => '- ' + a).join('\n')}
+
+PREVENTIVE MEASURES
+${data.preventive.trim() || '[Describe the concrete ongoing process change that prevents recurrence]'}
+
+SUPPORTING DOCUMENTATION ATTACHED
+${attachedDocs.map(a => '- ' + a).join('\n')}
+
+We respectfully request reinstatement of ${data.shopName || '[shop/listing]'} and are committed to full compliance with TikTok Shop policies going forward.
+
+${data.shopName || '[Seller name / business name]'}
+
+---
+This letter is drafted based on the information you provided and general patterns in TikTok Shop's stated appeal framework. It is not legal advice, and we cannot guarantee TikTok's decision. Review every factual claim before submitting — only include documentation you can actually provide.`;
+
+  document.getElementById('letterBox').textContent = letter;
+  document.getElementById('output').style.display = 'block';
+  document.getElementById('output').scrollIntoView({behavior:'smooth'});
+});
+
+document.getElementById('copyBtn').addEventListener('click', () => {
+  navigator.clipboard.writeText(document.getElementById('letterBox').textContent).then(() => {
+    const btn = document.getElementById('copyBtn');
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+});
+
+document.getElementById('printBtn').addEventListener('click', () => window.print());
+</script>
+
+</body>
+</html>
