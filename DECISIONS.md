@@ -32,5 +32,10 @@ Kill or pivot if, after real outreach (not before):
 - Seller communities uniformly ban/remove this kind of offer and no DM/alternative channel works.
 - We cannot produce a genuinely useful, non-generic appeal (i.e., it's indistinguishable from what ChatGPT already gives a seller for free) — if so, the differentiation claim was wrong and the product needs a real rework or should be killed.
 
+## 2026-09-10 — Simplified from 3 pricing tiers to 1
+**Decision:** Cut the DIY Toolkit ($39) and Priority rush tier ($249), launching with a single SKU: Appeal Rescue Kit, $149.
+**Reason:** All three tiers were speculative — zero customers had validated any of them. The DIY tier revived the "generic template pack" concept the opportunity scorecard already scored at 5.5/10 and rejected as its own business (commodity, no differentiation); keeping it as a bolt-on risked cannibalizing $149 sales rather than adding incremental revenue. The Priority tier promised a 4-hour turnaround before a single normal-turnaround order had been fulfilled even once. Three SKUs also triples landing-page/Stripe/messaging complexity and adds decision friction for a customer who is, per the emotional-UX model (master-prompt §13), already in PANIC and needs CLARITY, not a pricing table.
+**Outcome:** Landing page, PRODUCT.md, and the Stripe setup step in LAUNCH.md now reflect one product only. Tiers can be added back reactively if real customers ask for a cheaper or faster option — not before.
+
 ## Open items requiring the user (tracked, not blocking research/build)
 Stripe is already set up. Facebook (personal account) is available for community outreach. See LAUNCH.md for the exact next physical steps.

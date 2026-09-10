@@ -41,7 +41,7 @@
   .faq p{color:var(--muted);margin:10px 0 0;font-size:14.5px;}
   .disclaimer{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:18px 20px;color:var(--muted);font-size:13.5px;}
   footer{padding:32px 0;text-align:center;color:var(--muted);font-size:13px;}
-  @media(max-width:720px){.steps,.pricing{grid-template-columns:1fr;}}
+  @media(max-width:720px){.steps{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -53,6 +53,8 @@
     <p class="sub">A fast, affordable diagnosis and ready-to-submit appeal letter, built specifically for TikTok Shop's appeal process. Not a $1,500 law firm. Not a generic template.</p>
     <a class="cta" href="#pricing">Get my appeal reviewed — $149</a>
     <div class="cta-note">24–48 hour delivery · Not legal advice · No reinstatement guarantee (see FAQ)</div>
+    <!-- Simplified to a single offer (2026-09-10): the original 3-tier menu (DIY $39 / Rescue $149 / Priority $249)
+         was cut before any customer had validated demand for the base offer. See DECISIONS.md. -->
   </div>
 </header>
 
@@ -70,17 +72,7 @@
 <section id="pricing">
   <div class="wrap">
     <h2>Pricing</h2>
-    <div class="pricing">
-      <div class="plan">
-        <div class="tag">DIY Toolkit</div>
-        <div class="price">$39</div>
-        <ul>
-          <li>Templates + checklists for all common violation types</li>
-          <li>Self-serve, instant download</li>
-          <li>No personalization</li>
-        </ul>
-        <a href="#contact">Get the toolkit</a>
-      </div>
+    <div class="pricing" style="grid-template-columns:1fr;max-width:360px;margin:0 auto;">
       <div class="plan featured">
         <div class="tag">Appeal Rescue Kit</div>
         <div class="price">$149</div>
@@ -91,16 +83,6 @@
           <li>24–48 hour delivery</li>
         </ul>
         <a href="#contact">Start my appeal</a>
-      </div>
-      <div class="plan">
-        <div class="tag">Priority</div>
-        <div class="price">$249</div>
-        <ul>
-          <li>Everything in Appeal Rescue Kit</li>
-          <li>4-hour turnaround</li>
-          <li>One revision round included</li>
-        </ul>
-        <a href="#contact">Go priority</a>
       </div>
     </div>
   </div>

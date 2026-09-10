@@ -8,13 +8,13 @@ Not an app. Not a dashboard. A **document delivered after a structured intake**,
 →
 > "I know exactly which policy I violated, what evidence I'm missing, and I have a specific, ready-to-submit appeal in hand."
 
-## Offer tiers
-1. **DIY Toolkit — $39.** Generic evidence-checklist + appeal-letter templates covering the most common TikTok Shop violation categories (IP/counterfeit, prohibited product, misleading listing, shipping/fulfillment violation, account verification). No personalization. Delivered instantly (digital download).
-2. **Appeal Rescue Kit — $149 (core offer).** Seller completes a structured intake form (see `fulfillment/intake-questionnaire.md`). Within 24–48h, they receive:
-   - A plain-English diagnosis of the specific violation and likely root cause
-   - The exact evidence checklist required for that violation type (per TikTok Seller Center's stated appeal requirements — root cause, corrective action, preventive measures)
-   - A customized, ready-to-submit appeal letter incorporating their specific facts
-3. **Priority — $249.** Same as above, 4-hour turnaround + one revision round.
+## The offer (single SKU — see DECISIONS.md for why the 3-tier menu was cut)
+**Appeal Rescue Kit — $149.** Seller completes a structured intake form (see `fulfillment/intake-questionnaire.md`). Within 24–48h, they receive:
+- A plain-English diagnosis of the specific violation and likely root cause
+- The exact evidence checklist required for that violation type (per TikTok Seller Center's stated appeal requirements — root cause, corrective action, preventive measures)
+- A customized, ready-to-submit appeal letter incorporating their specific facts
+
+No DIY toolkit, no Priority rush tier at launch. One product, one price, one decision for a stressed customer to make. Add tiers later only in response to actual customer requests (e.g. "can you go faster?" → reactively price a rush add-on once fulfillment throughput on the base offer is proven).
 
 ## Fulfillment workflow (manual, repeatable, documented for consistency)
 See `fulfillment/` directory:

@@ -2,13 +2,14 @@
 
 These steps require your accounts/identity and can't be done by Claude directly. Everything else (copy, templates, landing page, research) is already built — see README.md for links.
 
-## 1. Create Stripe Payment Links (~5 min)
+## 1. Create 1 Stripe Payment Link (~2 min)
 1. Go to https://dashboard.stripe.com/payment-links and log in.
 2. Click **+ New**.
 3. Under "Product," click **Add a new product**. Name: `TikTok Shop Appeal Rescue Kit`. Price: `$149.00`, one-time. Click **Add product**, then **Create link**.
 4. Copy the resulting URL (looks like `https://buy.stripe.com/xxxx`).
-5. Repeat for two more products: `TikTok Shop Appeal DIY Toolkit` at `$39.00`, and `TikTok Shop Appeal Rescue — Priority` at `$249.00`.
-6. Send the 3 links back to Claude and it'll wire them into the `Get started` buttons on `site/index.html`.
+5. Send the link back to Claude and it'll wire it into the `Get started` button on `site/index.html`.
+
+(Simplified from 3 products to 1 on 2026-09-10 — see `DECISIONS.md`. No DIY or Priority tier for now.)
 
 **If Stripe asks for business verification first:** the link may work in a pending/test state — usable once verification clears (often same day).
 
@@ -27,5 +28,5 @@ These steps require your accounts/identity and can't be done by Claude directly.
 ## 4. Report back
 After each session, report: how many replies were sent, any responses/DMs, and whether groups allowed it. Log it in `METRICS.md`, diagnose the bottleneck (per the diagnostic loop there), and adjust the copy/channel/price if needed — that's the ongoing loop from here.
 
-## What happens once Payment Links exist
-Wire them into `site/index.html`, and (only if useful) look into free hosting for the page — GitHub Pages is available on this repo at no cost, needs one toggle in repo Settings → Pages.
+## What happens once the Payment Link exists
+Wire it into `site/index.html`, and (only if useful) look into free hosting for the page — GitHub Pages is available on this repo at no cost, needs one toggle in repo Settings → Pages.
