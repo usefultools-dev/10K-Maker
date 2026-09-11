@@ -12,7 +12,7 @@ The product is a self-serve tool (`site/generator.html`), so it needs a real, pu
 ## 2. Create 1 Stripe Payment Link (~3 min)
 1. Go to https://dashboard.stripe.com/payment-links and log in.
 2. Click **+ New**.
-3. Under "Product," click **Add a new product**. Name: `TikTok Shop Appeal Rescue Kit`. Price: `$149.00`, one-time. Click **Add product**.
+3. Under "Product," click **Add a new product**. Name: `TikTok Shop Appeal Rescue Kit`. Price: `$39.00`, one-time. Click **Add product**.
 4. Before clicking Create link, look for **"After payment"** settings and choose **"Redirect customers to your website"** — paste in your `generator.html` URL from step 1.
 5. Click **Create link**, then copy the resulting Payment Link URL (looks like `https://buy.stripe.com/xxxx`).
 6. Send that link back to Claude and it'll wire it into the `Get started` button on `site/index.html` (currently points directly at `generator.html` as a placeholder for testing).

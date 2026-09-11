@@ -5,7 +5,7 @@ TARGET: $10,000
 REVENUE: $0
 REMAINING: $10,000
 CUSTOMERS: 0
-AVERAGE ORDER VALUE: $0 (target ~$150 blended)
+AVERAGE ORDER VALUE: $0 (target $39 — single SKU)
 TRAFFIC: not yet started
 CONVERSION: not yet started
 BEST CHANNEL: not yet determined

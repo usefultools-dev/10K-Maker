@@ -11,7 +11,7 @@ A **self-serve, fully automated document generator** (`site/generator.html`): th
 > "I know exactly which policy I violated, what evidence I'm missing, and I have a specific, ready-to-submit appeal in hand."
 
 ## The offer (single SKU — see DECISIONS.md for why the 3-tier menu was cut)
-**Appeal Rescue Kit — $149.** Seller completes a structured intake form (see `fulfillment/intake-questionnaire.md`). Within 24–48h, they receive:
+**Appeal Rescue Kit — $39.** Seller completes a structured intake form (see `fulfillment/intake-questionnaire.md`). Instantly, they receive:
 - A plain-English diagnosis of the specific violation and likely root cause
 - The exact evidence checklist required for that violation type (per TikTok Seller Center's stated appeal requirements — root cause, corrective action, preventive measures)
 - A customized, ready-to-submit appeal letter incorporating their specific facts
@@ -31,7 +31,7 @@ These `fulfillment/` docs remain the source-of-truth spec — update them first 
 - Not a guarantee of reinstatement — TikTok makes the final decision. The offer is "the best possible appeal, fast," not "guaranteed to work." This must be stated clearly to avoid overpromising and refund disputes.
 
 ## Delivery mechanics
-- Payment: Stripe Payment Link, one-time $149, post-payment redirect set to `generator.html`.
+- Payment: Stripe Payment Link, one-time $39, post-payment redirect set to `generator.html`.
 - Intake + diagnosis + letter: all handled client-side, instantly, in `generator.html` — no form submission, no email round-trip.
 - Delivery: the customer copies the letter or uses the browser's Print → Save as PDF from the tool itself.
 - Hosting: static only (GitHub Pages, free) — no database or backend.

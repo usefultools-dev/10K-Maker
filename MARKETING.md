@@ -7,7 +7,7 @@ US-based TikTok Shop seller, shop/listing suspended or violated in the last few 
 "The fast, affordable second opinion on your TikTok Shop suspension — not a $1,500 law firm, not a generic template. A specific diagnosis and a ready-to-submit appeal in 24–48 hours."
 
 ## Offer / USP / objections
-- **USP:** TikTok-Shop-specific (not a generalist Amazon firm), personalized (not a generic template), fast, and 5–10x cheaper than legal-service alternatives.
+- **USP:** TikTok-Shop-specific (not a generalist Amazon firm), personalized (not a generic template), instant, and ~20-40x cheaper than legal-service alternatives ($39 vs $750–$1,495).
 - **Objections & responses:**
   - *"Is this legal advice?"* → No — explicitly administrative/appeal-writing help, not legal representation. State this upfront.
   - *"Will this guarantee reinstatement?"* → No guarantee is offered; TikTok makes the final call. We guarantee the best possible appeal, fast. (Consider a "if we can't produce a customized diagnosis, full refund" guarantee to reduce risk.)
@@ -22,16 +22,16 @@ US-based TikTok Shop seller, shop/listing suspended or violated in the last few 
 ## Ready-to-use copy
 
 ### Direct reply to someone who just posted about a suspension (use verbatim, personalize the bracketed part)
-> Sorry this happened — [violation type] suspensions are brutal because TikTok's message rarely tells you what they actually need to see in the appeal. A few things that matter for this violation type: [1-line specific tip from `fulfillment/violation-playbooks.md`]. If you want, I put together a service that diagnoses the exact issue and drafts a ready-to-submit appeal for $149 (built specifically for TikTok Shop, not a generic template) — happy to just answer questions here too either way.
+> Sorry this happened — [violation type] suspensions are brutal because TikTok's message rarely tells you what they actually need to see in the appeal. A few things that matter for this violation type: [1-line specific tip from `fulfillment/violation-playbooks.md`]. If you want, I built a tool that diagnoses the exact issue and generates a ready-to-submit appeal instantly for $39 (built specifically for TikTok Shop, not a generic template) — happy to just answer questions here too either way.
 
 ### Community post (only where self-promotion is allowed)
 > **Title: TikTok Shop suspended? I'll tell you exactly what's missing from your appeal — free 5-min diagnosis.**
-> Been digging into TikTok Shop's appeal process (root cause / immediate action / preventive measures — that's literally the framework Seller Center wants). If your shop or a listing got hit, reply with what happened and I'll tell you what's likely missing from your case, free. If it's more involved, I offer a paid service ($149) that writes the full appeal for you in 24-48h — but the quick read is free either way.
+> Been digging into TikTok Shop's appeal process (root cause / immediate action / preventive measures — that's literally the framework Seller Center wants). If your shop or a listing got hit, reply with what happened and I'll tell you what's likely missing from your case, free. If it's more involved, I built a $39 tool that generates the full appeal for you instantly — but the quick read is free either way.
 
 ### Landing page hero copy
 - **Headline:** "Your TikTok Shop got suspended. We'll tell you exactly why — and write your appeal."
-- **Subhead:** "A fast, affordable diagnosis and ready-to-submit appeal letter, built specifically for TikTok Shop's appeal process. Not a law firm. Not a generic template."
-- **CTA:** "Get my appeal reviewed — $149"
+- **Subhead:** "An instant, affordable diagnosis and ready-to-submit appeal letter, built specifically for TikTok Shop's appeal process. Not a law firm. Not a generic template."
+- **CTA:** "Get my appeal reviewed — $39"
 
 ### FAQ (for landing page)
 - **Is this legal advice?** No. We help you prepare the strongest possible appeal using TikTok Seller Center's own stated framework — we are not attorneys and this isn't legal representation.

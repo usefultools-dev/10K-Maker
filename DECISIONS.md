@@ -43,5 +43,10 @@ Kill or pivot if, after real outreach (not before):
 **Tradeoff accepted:** less flexible than an AI-drafted letter for a genuinely unusual case that falls outside the 5 anticipated violation categories' branches — traded for zero cost, zero hallucination risk, instant delivery, and no operator bottleneck.
 **Outcome:** `site/index.html`'s CTA now points to `generator.html` (pending the Stripe Payment Link's post-payment redirect being wired to it once created). `fulfillment/*.md` remain the source-of-truth spec for the branching logic, not the fulfillment process itself.
 
+## 2026-09-11 — Repriced from $149 to $39
+**Decision:** Drop the price from $149 to $39 per explicit user instruction.
+**Evidence/impact:** Recomputed in `10K-PATH.md`. Customers needed for $10K goes from 68 to 257 — a 3.8x increase — using the same organic Reddit/Facebook outreach channel that was already the identified bottleneck (no outreach had happened yet at any price). None of the conservative/base/upside cases reach $10K in 3–6 weeks at $39 under current distribution assumptions; the upside case reaches only ~23% of target. Automation (the generator tool) removes the fulfillment-cost constraint but does nothing to increase outreach volume, which remains the binding constraint.
+**Status:** Implemented as instructed — not blocked on this analysis, since price/UX-conversion effects are untested and could offset some of the volume gap. Flagged per master-prompt kill-criteria §14 ("the $10K path is implausible") so the gap is visible now rather than discovered in week 5. Revisit price upward, or pursue a higher-volume/paid channel, if real outreach data confirms the conversion rate isn't high enough to close the gap.
+
 ## Open items requiring the user (tracked, not blocking research/build)
 Stripe is already set up. Facebook (personal account) is available for community outreach. See LAUNCH.md for the exact next physical steps.
