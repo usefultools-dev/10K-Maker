@@ -14,10 +14,12 @@ US-based TikTok Shop seller, shop/listing suspended or violated in the last few 
   - *"Why not just use ChatGPT myself?"* → Generic AI doesn't know TikTok Seller Center's specific appeal requirements per violation type or what evidence actually gets appeals approved — this is targeted, not generic.
   - *"Why should I trust an unknown provider?"* → Early customers get a lower "founding customer" price in exchange for a testimonial; be transparent that this is new.
 
-## Channel priority (per master-prompt §25: speed, intent, cost, accessibility, conversion)
-1. **Direct replies to public "my TikTok Shop got suspended" posts** (Reddit, Facebook groups) — highest intent, zero cost, immediate. Start here.
-2. **General posts in seller communities** offering the service — secondary, check each group's self-promotion rules first (many ban it; ask mods or find a "services/promo" thread if one exists).
-3. **Short-form video (TikTok/YouTube)** showing a real (anonymized) before/after diagnosis — build once organic replies validate the offer; strong fit since the audience already lives on TikTok.
+## Channel priority (per master-prompt §25: speed, intent, cost, accessibility, conversion — updated 2026-09-11, see DECISIONS.md)
+1. **Direct replies to public "my TikTok Shop got suspended" posts on Reddit** — highest intent, zero cost, immediate, no approval friction. Start here, every week.
+2. **Facebook groups** — same tactic, but demoted to a week-2+ add-on: closed groups require join approval (hours-to-days, sometimes rejected) and most ban self-promotion, both costly against a limited weekly time budget. Only worth it with an already-established personal profile.
+3. **General posts in seller communities** offering the service — secondary, check each group's self-promotion rules first (many ban it; ask mods or find a "services/promo" thread if one exists).
+4. **Short-form video (TikTok/YouTube)** showing a real (anonymized) before/after diagnosis — build once organic replies validate the offer; strong fit since the audience already lives on TikTok.
+5. **Paid ads (Reddit Ads)** — the only genuinely automated/scaled channel available, but requires ad spend ($500-1500 for a real test) and hasn't been pursued since the goal is $0 marketing spend. Reconsider if organic Reddit outreach alone can't reach volume.
 
 ## Ready-to-use copy
 
