@@ -31,8 +31,8 @@ US-based TikTok Shop seller, shop/listing suspended or violated in the last few 
 > Been digging into TikTok Shop's appeal process (root cause / immediate action / preventive measures — that's literally the framework Seller Center wants). If your shop or a listing got hit, reply with what happened and I'll tell you what's likely missing from your case, free. If it's more involved, I built a $39 tool that generates the full appeal for you instantly — but the quick read is free either way.
 
 ### Landing page hero copy
-- **Headline:** "Your TikTok Shop got suspended. We'll tell you exactly why — and write your appeal."
-- **Subhead:** "An instant, affordable diagnosis and ready-to-submit appeal letter, built specifically for TikTok Shop's appeal process. Not a law firm. Not a generic template."
+- **Headline:** "Your TikTok Shop got suspended. Here's exactly what to submit — and a ready-to-send appeal." (dropped "we'll tell you why" framing 2026-09-13 — self-evident to the seller, who already knows what happened to them; the real value is the checklist + letter, not restating the cause. See DECISIONS.md.)
+- **Subhead:** "An instant evidence checklist and ready-to-submit appeal letter, built specifically for TikTok Shop's appeal process. Not a law firm. Not a generic template."
 - **CTA:** "Get my appeal reviewed — $39"
 
 ### FAQ (for landing page)

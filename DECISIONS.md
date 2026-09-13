@@ -59,5 +59,10 @@ Kill or pivot if, after real outreach (not before):
 **Fix:** Added deterministic keyword matching (`DIAGNOSIS_KEYWORDS` in `generator.html`) that scans the customer's "what happened" description and pasted violation-notice text for category-specific terms (e.g. "counterfeit"/"trademark" → IP; "shipping"/"late"/"fulfillment" → shipping violation) and auto-selects the matching violation type, showing a visible "Diagnosis" callout explaining why. The dropdown stays editable in case the auto-detection is wrong. Still fully deterministic — no AI, no added cost — consistent with the earlier automation decision.
 **Also reordered** the form: "what happened" and the violation notice text now come before the violation-type field, so the flow matches the promise (describe → we diagnose → here's your category) instead of asking the customer to self-diagnose first.
 
+## 2026-09-13 — Dropped "we'll tell you why" from headline
+**Decision:** Changed the hero headline from "We'll tell you exactly why — and write your appeal" to "Here's exactly what to submit — and a ready-to-send appeal."
+**Reason:** Per the user: the "why" is self-evident to the seller — they already lived the violation, so promising to explain it back to them isn't the real value. The actual differentiator is the evidence checklist and the finished letter, not a restated diagnosis. Matches the same trim already made to the generator tool's diagnosis callout (dropped the `pb.cause` explanation there for the same reason).
+**Outcome:** Updated `site/index.html` and `MARKETING.md` hero copy.
+
 ## Open items requiring the user (tracked, not blocking research/build)
 Stripe is already set up. Facebook (personal account) is available for community outreach. See LAUNCH.md for the exact next physical steps.
