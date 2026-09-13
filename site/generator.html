@@ -269,7 +269,7 @@ function runDiagnosis() {
     renderChecklist();
     const pb = PLAYBOOKS[guess];
     diagnosisBox.style.display = 'block';
-    diagnosisBox.innerHTML = `<b>Diagnosis:</b> based on what you described, this looks like a <b>${pb.label}</b>. ${pb.cause} Change the dropdown below if this doesn't match your situation.`;
+    diagnosisBox.innerHTML = `<b>Diagnosis:</b> this looks like a <b>${pb.label}</b>. Change the dropdown below if that's not right.`;
   } else {
     diagnosisBox.style.display = 'none';
   }
