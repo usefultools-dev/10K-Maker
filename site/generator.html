@@ -74,16 +74,6 @@
   <form id="appealForm">
     <fieldset>
       <legend>The violation</legend>
-      <label for="violationType">What type of violation is this?</label>
-      <select id="violationType" required>
-        <option value="">Select one…</option>
-        <option value="ip">IP / Counterfeit</option>
-        <option value="prohibited">Prohibited / restricted product</option>
-        <option value="misleading">Misleading content / listing</option>
-        <option value="shipping">Shipping / fulfillment violation</option>
-        <option value="verification">Account verification / identity issue</option>
-      </select>
-
       <label for="shopName">Shop name / seller ID</label>
       <input type="text" id="shopName" placeholder="e.g. Acme Home Goods">
 
@@ -92,6 +82,18 @@
 
       <label for="violationText">Exact violation notice text from TikTok (paste it if you have it — this is the single most important field)</label>
       <textarea id="violationText" placeholder="Paste TikTok's exact wording here"></textarea>
+
+      <div id="diagnosisBox" class="mistake-box" style="display:none;border-color:var(--good);background:rgba(61,220,151,.08);"></div>
+
+      <label for="violationType">Violation type <span class="hint" style="display:inline;margin:0;">(diagnosed from what you described above — change it if this doesn't match)</span></label>
+      <select id="violationType" required>
+        <option value="">Describe what happened above, or pick manually…</option>
+        <option value="ip">IP / Counterfeit</option>
+        <option value="prohibited">Prohibited / restricted product</option>
+        <option value="misleading">Misleading content / listing</option>
+        <option value="shipping">Shipping / fulfillment violation</option>
+        <option value="verification">Account verification / identity issue</option>
+      </select>
 
       <label for="dateHappened">When did this happen?</label>
       <input type="date" id="dateHappened">
@@ -215,13 +217,70 @@ const PLAYBOOKS = {
 
 const typeSelect = document.getElementById('violationType');
 const checklistDiv = document.getElementById('evidenceChecklist');
+const diagnosisBox = document.getElementById('diagnosisBox');
+const whatHappenedEl = document.getElementById('whatHappened');
+const violationTextEl = document.getElementById('violationText');
 
-typeSelect.addEventListener('change', () => {
+// Deterministic diagnosis: match the seller's own description/notice text against
+// per-category keywords so the tool tells them what kind of violation this is,
+// rather than requiring them to already know and pick it themselves.
+const DIAGNOSIS_KEYWORDS = {
+  ip: ['counterfeit','trademark','copyright','intellectual property','brand','infringement','unauthorized use','fake','replica','logo'],
+  prohibited: ['prohibited','restricted','banned','not allowed','hazardous','flammable','category violation','regulated item','illegal item','dangerous good'],
+  misleading: ['misleading','false','inaccurate','does not match','deceptive','exaggerated','fake discount','false claim','stock photo'],
+  shipping: ['shipping','late','fulfillment','cancellation','sla','delivery','delayed','logistics','order defect'],
+  verification: ['verification','identity','id document','mismatch','tax information','bank','business license','kyc','name mismatch']
+};
+
+function diagnoseViolationType(text) {
+  const lower = text.toLowerCase();
+  let best = null, bestScore = 0;
+  for (const [key, words] of Object.entries(DIAGNOSIS_KEYWORDS)) {
+    const score = words.reduce((acc, w) => acc + (lower.includes(w) ? 1 : 0), 0);
+    if (score > bestScore) { bestScore = score; best = key; }
+  }
+  return bestScore > 0 ? best : null;
+}
+
+function renderChecklist() {
   const pb = PLAYBOOKS[typeSelect.value];
   if (!pb) { checklistDiv.innerHTML = '<p class="hint">Waiting for violation type…</p>'; return; }
-  checklistDiv.innerHTML = pb.evidence.map((item, i) =>
+  checklistDiv.innerHTML = pb.evidence.map((item) =>
     `<label><input type="checkbox" class="evidenceCheck" value="${item.replace(/"/g,'&quot;')}"> ${item}</label>`
   ).join('');
+}
+
+function debounce(fn, ms) {
+  let t;
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}
+
+let userOverrodeType = false;
+let lastAutoType = '';
+
+function runDiagnosis() {
+  if (userOverrodeType) return;
+  const combined = whatHappenedEl.value + ' ' + violationTextEl.value;
+  if (combined.trim().length < 15) { diagnosisBox.style.display = 'none'; return; }
+  const guess = diagnoseViolationType(combined);
+  if (guess) {
+    lastAutoType = guess;
+    typeSelect.value = guess;
+    renderChecklist();
+    const pb = PLAYBOOKS[guess];
+    diagnosisBox.style.display = 'block';
+    diagnosisBox.innerHTML = `<b>Diagnosis:</b> based on what you described, this looks like a <b>${pb.label}</b>. ${pb.cause} Change the dropdown below if this doesn't match your situation.`;
+  } else {
+    diagnosisBox.style.display = 'none';
+  }
+}
+
+whatHappenedEl.addEventListener('input', debounce(runDiagnosis, 400));
+violationTextEl.addEventListener('input', debounce(runDiagnosis, 400));
+
+typeSelect.addEventListener('change', () => {
+  if (typeSelect.value !== lastAutoType) userOverrodeType = true;
+  renderChecklist(false);
 });
 
 document.getElementById('appealForm').addEventListener('submit', (e) => {
