@@ -85,7 +85,7 @@
 
       <div id="diagnosisBox" class="mistake-box" style="display:none;border-color:var(--good);background:rgba(61,220,151,.08);"></div>
 
-      <label for="violationType">Violation type <span class="hint" style="display:inline;margin:0;">(diagnosed from what you described above — change it if this doesn't match)</span></label>
+      <label for="violationType">Violation type <span class="hint" style="display:inline;margin:0;">(matched from what you described above — change it if this doesn't match)</span></label>
       <select id="violationType" required>
         <option value="">Describe what happened above, or pick manually…</option>
         <option value="ip">IP / Counterfeit</option>
@@ -269,7 +269,7 @@ function runDiagnosis() {
     renderChecklist();
     const pb = PLAYBOOKS[guess];
     diagnosisBox.style.display = 'block';
-    diagnosisBox.innerHTML = `<b>Diagnosis:</b> this looks like a <b>${pb.label}</b>. Change the dropdown below if that's not right.`;
+    diagnosisBox.innerHTML = `<b>Detected:</b> this looks like a <b>${pb.label}</b>. Change the dropdown below if that's not right.`;
   } else {
     diagnosisBox.style.display = 'none';
   }

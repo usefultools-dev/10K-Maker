@@ -12,7 +12,7 @@ A **self-serve, fully automated document generator** (`site/generator.html`): th
 
 ## The offer (single SKU — see DECISIONS.md for why the 3-tier menu was cut)
 **Appeal Rescue Kit — $39.** Seller completes a structured intake form (see `fulfillment/intake-questionnaire.md`). Instantly, they receive:
-- A plain-English diagnosis of the specific violation and likely root cause
+- The specific violation type, matched from what they describe (no need to already know TikTok's category names)
 - The exact evidence checklist required for that violation type (per TikTok Seller Center's stated appeal requirements — root cause, corrective action, preventive measures)
 - A customized, ready-to-submit appeal letter incorporating their specific facts
 

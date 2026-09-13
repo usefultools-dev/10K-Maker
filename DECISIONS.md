@@ -64,5 +64,10 @@ Kill or pivot if, after real outreach (not before):
 **Reason:** Per the user: the "why" is self-evident to the seller — they already lived the violation, so promising to explain it back to them isn't the real value. The actual differentiator is the evidence checklist and the finished letter, not a restated diagnosis. Matches the same trim already made to the generator tool's diagnosis callout (dropped the `pb.cause` explanation there for the same reason).
 **Outcome:** Updated `site/index.html` and `MARKETING.md` hero copy.
 
+## 2026-09-13 — Removed "diagnosis" language sitewide
+**Decision:** Swept all customer-facing copy (landing page, generator tool, outreach scripts, FAQ) to remove remaining "diagnosis"/"diagnose" wording, continuing the same direction as the headline change above.
+**Reason:** The user flagged this appearing in the pricing bullets after the headline fix — the "diagnosis" framing was inconsistent with the decision that the checklist and letter are the real value, not explaining the violation back to the customer.
+**Outcome:** Updated `site/index.html` (pricing bullet, 2 FAQ answers), `site/generator.html` (form label, the tool's own callout — now says "Detected:" instead of "Diagnosis:"), `PRODUCT.md`, and `MARKETING.md` (positioning quote, objection copy, video-content idea, direct-reply script, community post title, FAQ). Internal code identifiers (`diagnoseViolationType`, `DIAGNOSIS_KEYWORDS`, etc.) were left as-is since they're not customer-facing.
+
 ## Open items requiring the user (tracked, not blocking research/build)
 Stripe is already set up. Facebook (personal account) is available for community outreach. See LAUNCH.md for the exact next physical steps.
