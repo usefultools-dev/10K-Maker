@@ -4,13 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Build Your Appeal — TikTok Shop Appeal Rescue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0b0d12; --panel:#12151c; --panel2:#171b24; --text:#eef1f6; --muted:#9aa4b2;
     --accent:#ff2e63; --accent2:#ffd23f; --border:#232733; --good:#3ddc97; --warn:#ffd23f; --bad:#ff5c5c;
   }
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;}
   .wrap{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
   a.back{color:var(--muted);text-decoration:none;font-size:14px;}
   h1{font-size:clamp(24px,4vw,32px);margin:20px 0 8px;font-weight:800;}
@@ -32,6 +35,12 @@
   .cta-btn{display:block;width:100%;background:var(--accent);color:#fff;border:none;font-weight:700;
     font-size:16px;padding:16px;border-radius:10px;cursor:pointer;margin-top:8px;}
   .cta-btn:hover{filter:brightness(1.08);}
+  .unlock-btn{background:var(--good);color:var(--bg);box-shadow:0 8px 20px rgba(61,220,151,.25);}
+  .license-row{display:flex;gap:8px;margin-top:10px;}
+  .license-row input{flex:1;}
+  .license-row button{background:var(--panel2);border:1px solid var(--border);color:var(--text);
+    font-weight:700;padding:0 18px;border-radius:9px;cursor:pointer;font-size:14px;}
+  .license-row button:hover{border-color:var(--good);}
   #output{display:none;margin-top:36px;}
   .score-box{display:flex;align-items:center;gap:18px;background:var(--panel);border:1px solid var(--border);
     border-radius:12px;padding:20px;margin-bottom:20px;}
@@ -47,7 +56,7 @@
     font-size:13.5px;color:var(--text);margin:16px 0;}
   .mistake-box b{color:var(--accent2);}
   #letterBox{width:100%;min-height:380px;background:var(--panel2);border:1px solid var(--border);border-radius:10px;
-    color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;padding:16px;
+    color:var(--text);font-family:Georgia,'Times New Roman',serif;font-size:15.5px;line-height:1.7;padding:24px 28px;
     white-space:pre-wrap;}
   .actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
   .actions button{flex:1;min-width:140px;background:var(--panel2);border:1px solid var(--border);color:var(--text);
@@ -59,7 +68,7 @@
     a.back,fieldset,.lede,h1{display:none!important;}
     body{background:#fff;color:#000;}
     #output{display:block!important;margin-top:0;}
-    .score-box,.mistake-box,.actions,.disclaimer,.evidence-item{display:none!important;}
+    .score-box,.mistake-box,.actions,.license-row,#licenseError,.disclaimer,.evidence-item,.hint{display:none!important;}
     #letterBox{border:none;background:#fff;color:#000;font-size:12px;}
   }
 </style>
@@ -151,8 +160,13 @@
     <p class="hint" style="margin-top:0;">Review every claim before submitting — only include documentation you can actually provide.</p>
     <div id="letterBox"></div>
     <div id="lockedActions" class="actions">
-      <a id="unlockBtn" class="cta-btn" style="margin-top:0;text-decoration:none;text-align:center;" href="#">Unlock to copy &amp; download — $39</a>
+      <a id="unlockBtn" class="cta-btn unlock-btn" style="margin-top:0;text-decoration:none;text-align:center;" href="#">Unlock to copy &amp; download — $39</a>
     </div>
+    <div id="licenseRow" class="license-row">
+      <input type="text" id="licenseKeyInput" placeholder="Already paid? Enter your license key">
+      <button type="button" id="validateBtn">Apply</button>
+    </div>
+    <p id="licenseError" class="hint" style="display:none;color:var(--bad);"></p>
     <div id="unlockedActions" class="actions" style="display:none;">
       <button type="button" id="copyBtn">Copy letter</button>
       <button type="button" id="printBtn">Print / Save as PDF</button>
@@ -225,17 +239,64 @@ const diagnosisBox = document.getElementById('diagnosisBox');
 const whatHappenedEl = document.getElementById('whatHappened');
 const violationTextEl = document.getElementById('violationText');
 
-// TODO once the Lemon Squeezy checkout link exists: replace this placeholder,
-// and set its "redirect after purchase" URL to this page with ?unlocked=1 appended
-// (e.g. https://usefultools-dev.github.io/10K-Maker/generator.html?unlocked=1) so
-// returning customers land back here already unlocked.
+// TODO once the Lemon Squeezy checkout link exists: replace this placeholder.
 const PAYMENT_LINK = '#';
 
+// TODO once the Cloudflare Worker is deployed: replace with its real URL
+// (e.g. https://tiktok-appeal-license-check.yourname.workers.dev). The worker
+// proxies Lemon Squeezy's license validate API (which doesn't reliably support
+// direct browser calls) and adds CORS headers for this site's origin.
+const WORKER_URL = '#';
+
 function isUnlocked() {
-  return new URLSearchParams(window.location.search).get('unlocked') === '1';
+  try { return Boolean(localStorage.getItem('validatedLicenseKey')); }
+  catch (e) { return false; }
 }
 
 document.getElementById('unlockBtn').href = PAYMENT_LINK;
+
+async function validateLicenseKey(key) {
+  if (WORKER_URL === '#') {
+    return { valid: false, error: 'Verification isn\'t wired up on this preview yet — coming soon.' };
+  }
+  try {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ license_key: key })
+    });
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    return { valid: false, error: 'Could not reach the verification server — check your connection and try again.' };
+  }
+}
+
+document.getElementById('validateBtn').addEventListener('click', async () => {
+  const input = document.getElementById('licenseKeyInput');
+  const errorEl = document.getElementById('licenseError');
+  const key = input.value.trim();
+  errorEl.style.display = 'none';
+  if (!key) { errorEl.textContent = 'Enter the license key from your Lemon Squeezy receipt.'; errorEl.style.display = 'block'; return; }
+
+  const btn = document.getElementById('validateBtn');
+  const origLabel = btn.textContent;
+  btn.textContent = 'Checking…';
+  btn.disabled = true;
+
+  const result = await validateLicenseKey(key);
+
+  btn.textContent = origLabel;
+  btn.disabled = false;
+
+  if (result.valid) {
+    try { localStorage.setItem('validatedLicenseKey', key); } catch (e) { /* ignore */ }
+    showLockState();
+  } else {
+    errorEl.textContent = result.error || 'That license key didn\'t validate — double check it, or contact support if you just paid.';
+    errorEl.style.display = 'block';
+  }
+});
 
 function saveDraft(fields, checkedItems, letter) {
   try {
@@ -393,6 +454,7 @@ This letter is drafted based on the information you provided and general pattern
 function showLockState() {
   const unlocked = isUnlocked();
   document.getElementById('lockedActions').style.display = unlocked ? 'none' : 'flex';
+  document.getElementById('licenseRow').style.display = unlocked ? 'none' : 'flex';
   document.getElementById('unlockedActions').style.display = unlocked ? 'flex' : 'none';
   document.getElementById('lockedHint').style.display = unlocked ? 'none' : 'block';
 }
@@ -402,11 +464,13 @@ document.getElementById('unlockBtn').addEventListener('click', (e) => {
     e.preventDefault();
     alert('Payment isn\'t wired up on this preview yet — coming soon.');
   }
-  // real link: clicking navigates to PAYMENT_LINK, which redirects back here
-  // with ?unlocked=1 after purchase; the saved draft restores automatically.
+  // real link: clicking navigates to PAYMENT_LINK (Lemon Squeezy checkout).
+  // After paying, the customer gets a license key on their receipt/email and
+  // enters it in the "Already paid?" field below to unlock.
 });
 
-// Returning from payment: restore the saved draft and show it already unlocked.
+// Returning with a previously-validated license key saved in this browser:
+// restore the saved draft and show it already unlocked.
 if (isUnlocked()) {
   const draft = loadDraft();
   if (draft) {
