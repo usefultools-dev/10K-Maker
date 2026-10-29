@@ -14,7 +14,6 @@ Original manual-process note (kept for reference): use this exact question set (
 8. **What steps (if any) have you already taken to fix the issue?**
 9. **Approximate monthly revenue from this shop** (for context/urgency — optional)
 10. **Email address for delivery**
-11. **Tier selected:** DIY Toolkit ($39) / Appeal Rescue Kit ($149) / Priority ($249)
 
 ## After intake: now automatic (was manual fulfillment steps)
 `generator.html` does this instantly, client-side, per customer:
