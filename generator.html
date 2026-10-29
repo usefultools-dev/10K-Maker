@@ -150,10 +150,14 @@
     <h3 style="margin-bottom:6px;">Your appeal letter</h3>
     <p class="hint" style="margin-top:0;">Review every claim before submitting — only include documentation you can actually provide.</p>
     <div id="letterBox"></div>
-    <div class="actions">
+    <div id="lockedActions" class="actions">
+      <a id="unlockBtn" class="cta-btn" style="margin-top:0;text-decoration:none;text-align:center;" href="#">Unlock to copy &amp; download — $39</a>
+    </div>
+    <div id="unlockedActions" class="actions" style="display:none;">
       <button type="button" id="copyBtn">Copy letter</button>
       <button type="button" id="printBtn">Print / Save as PDF</button>
     </div>
+    <p class="hint" id="lockedHint" style="margin-top:8px;">You can read your full real letter above right now — payment only unlocks one-click copy and download, so you can see exactly what you're paying for first.</p>
 
     <div class="disclaimer">
       This letter is drafted based on the information you provided and general patterns in TikTok Shop's stated appeal framework. It is not legal advice, and we cannot guarantee TikTok's decision. TikTok Shop Appeal Rescue is an independent service and is not affiliated with, endorsed by, or operated by TikTok or ByteDance.
@@ -220,6 +224,31 @@ const checklistDiv = document.getElementById('evidenceChecklist');
 const diagnosisBox = document.getElementById('diagnosisBox');
 const whatHappenedEl = document.getElementById('whatHappened');
 const violationTextEl = document.getElementById('violationText');
+
+// TODO once the Lemon Squeezy checkout link exists: replace this placeholder,
+// and set its "redirect after purchase" URL to this page with ?unlocked=1 appended
+// (e.g. https://usefultools-dev.github.io/10K-Maker/generator.html?unlocked=1) so
+// returning customers land back here already unlocked.
+const PAYMENT_LINK = '#';
+
+function isUnlocked() {
+  return new URLSearchParams(window.location.search).get('unlocked') === '1';
+}
+
+document.getElementById('unlockBtn').href = PAYMENT_LINK;
+
+function saveDraft(fields, checkedItems, letter) {
+  try {
+    localStorage.setItem('appealDraft', JSON.stringify({ fields, checkedItems, letter, violationType: typeSelect.value }));
+  } catch (e) { /* localStorage unavailable (private browsing etc.) — unlock just won't restore the draft */ }
+}
+
+function loadDraft() {
+  try {
+    const raw = localStorage.getItem('appealDraft');
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
 
 // Deterministic diagnosis: match the seller's own description/notice text against
 // per-category keywords so the tool tells them what kind of violation this is,
@@ -356,7 +385,53 @@ This letter is drafted based on the information you provided and general pattern
   document.getElementById('letterBox').textContent = letter;
   document.getElementById('output').style.display = 'block';
   document.getElementById('output').scrollIntoView({behavior:'smooth'});
+
+  saveDraft(data, checkedItems, letter);
+  showLockState();
 });
+
+function showLockState() {
+  const unlocked = isUnlocked();
+  document.getElementById('lockedActions').style.display = unlocked ? 'none' : 'flex';
+  document.getElementById('unlockedActions').style.display = unlocked ? 'flex' : 'none';
+  document.getElementById('lockedHint').style.display = unlocked ? 'none' : 'block';
+}
+
+document.getElementById('unlockBtn').addEventListener('click', (e) => {
+  if (PAYMENT_LINK === '#') {
+    e.preventDefault();
+    alert('Payment isn\'t wired up on this preview yet — coming soon.');
+  }
+  // real link: clicking navigates to PAYMENT_LINK, which redirects back here
+  // with ?unlocked=1 after purchase; the saved draft restores automatically.
+});
+
+// Returning from payment: restore the saved draft and show it already unlocked.
+if (isUnlocked()) {
+  const draft = loadDraft();
+  if (draft) {
+    document.getElementById('shopName').value = draft.fields.shopName || '';
+    whatHappenedEl.value = draft.fields.whatHappened || '';
+    violationTextEl.value = draft.fields.violationText || '';
+    document.getElementById('caseRef').value = draft.fields.caseRef || '';
+    document.getElementById('stepsTaken').value = draft.fields.stepsTaken || '';
+    document.getElementById('preventive').value = draft.fields.preventive || '';
+    if (draft.fields.honestRead) {
+      const r = document.querySelector(`input[name=honestRead][value="${draft.fields.honestRead}"]`);
+      if (r) r.checked = true;
+    }
+    typeSelect.value = draft.violationType || '';
+    userOverrodeType = true; // don't let auto-diagnosis override the restored category
+    renderChecklist();
+    (draft.checkedItems || []).forEach(val => {
+      const cb = Array.from(document.querySelectorAll('.evidenceCheck')).find(c => c.value === val);
+      if (cb) cb.checked = true;
+    });
+    document.getElementById('letterBox').textContent = draft.letter;
+    document.getElementById('output').style.display = 'block';
+  }
+  showLockState();
+}
 
 document.getElementById('copyBtn').addEventListener('click', () => {
   navigator.clipboard.writeText(document.getElementById('letterBox').textContent).then(() => {
