@@ -13,7 +13,7 @@ Goal: $10,000 in real revenue within 3–6 weeks. Full process and reasoning bel
 8. [`LAUNCH.md`](LAUNCH.md) — the exact human-action steps needed to go live
 
 ## Working files
-- [`site/index.html`](site/index.html) — landing page (static, no build step, no hosting cost required)
+- [`index.html`](index.html) — landing page (static, no build step, no hosting cost required)
 - [`fulfillment/`](fulfillment) — intake questionnaire, violation playbooks, appeal letter template used to deliver every order
 
 ## Status

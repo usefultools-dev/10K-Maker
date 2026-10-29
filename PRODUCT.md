@@ -1,7 +1,7 @@
 # Product Spec — TikTok Shop Appeal Rescue
 
 ## The smallest sellable thing
-A **self-serve, fully automated document generator** (`site/generator.html`): the customer answers a structured form in their browser and gets a case-readiness score, evidence checklist, and a ready-to-submit appeal letter immediately — assembled by deterministic branching logic (no AI, no backend, no human fulfillment step). Zero recurring cost, zero per-order labor, instant delivery.
+A **self-serve, fully automated document generator** (`generator.html`): the customer answers a structured form in their browser and gets a case-readiness score, evidence checklist, and a ready-to-submit appeal letter immediately — assembled by deterministic branching logic (no AI, no backend, no human fulfillment step). Zero recurring cost, zero per-order labor, instant delivery.
 
 **Why not AI-generated per order:** an LLM call per order would also be "automated," but costs money per order and can hallucinate. The same domain knowledge already researched (`fulfillment/violation-playbooks.md`) is rules-based enough to encode directly as branching logic — more reliable, faster, and free to run. See `DECISIONS.md` (2026-09-10).
 
@@ -19,7 +19,7 @@ A **self-serve, fully automated document generator** (`site/generator.html`): th
 No DIY toolkit, no Priority rush tier at launch. One product, one price, one decision for a stressed customer to make. Add tiers later only in response to actual customer requests (e.g. "can you go faster?" → reactively price a rush add-on once fulfillment throughput on the base offer is proven).
 
 ## Fulfillment workflow (automated — no human step per order)
-`site/generator.html` encodes the logic from `fulfillment/`:
+`generator.html` encodes the logic from `fulfillment/`:
 - `intake-questionnaire.md` — the question set the generator's form is built from.
 - `violation-playbooks.md` — per-violation-category evidence checklist, common cause, and common-mistake warning, encoded as the `PLAYBOOKS` object in the generator's JS.
 - `appeal-letter-template.md` — the Root Cause → Immediate Actions → Preventive Measures structure the generator assembles the final letter from.

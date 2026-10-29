@@ -2,24 +2,11 @@
 
 These steps require your accounts/identity and can't be done by Claude directly. Everything else (copy, templates, landing page, research) is already built — see README.md for links.
 
-## 1. Publish the site on GitHub Pages (~2 min) — now required
-The product is a self-serve tool (`site/generator.html`), so it needs a real, public URL for Stripe to redirect customers to after payment.
-1. On GitHub, go to this repo → **Settings** → **Pages**.
-2. Under "Build and deployment," set Source to **Deploy from a branch**, Branch: `main`, Folder: `/site` (or `/root` if `/site` isn't offered — ask Claude to move the files if so).
-3. Save. GitHub shows you the live URL (looks like `https://nickolaskoros-dev.github.io/10K-Maker/`) — it can take a minute to go live.
-4. Visit the URL and confirm both the landing page and `generator.html` (e.g. `.../generator.html`) load and the tool works.
+## 1. Publish the site on GitHub Pages — done 2026-10-29
+The product is a self-serve tool (`generator.html`), so it needed a real, public URL for payment to redirect customers to after purchase. Site files live at the repo root (moved from `/site` since GitHub Pages only offers root or `/docs` as folder options). Source: `main` branch, `/ (root)`. Live at `https://usefultools-dev.github.io/10K-Maker/` and `https://usefultools-dev.github.io/10K-Maker/generator.html` once GitHub finishes the first build (can take a minute).
 
-## 2. Create 1 Stripe Payment Link (~3 min)
-1. Go to https://dashboard.stripe.com/payment-links and log in.
-2. Click **+ New**.
-3. Under "Product," click **Add a new product**. Name: `TikTok Shop Appeal Rescue Kit`. Price: `$39.00`, one-time. Click **Add product**.
-4. Before clicking Create link, look for **"After payment"** settings and choose **"Redirect customers to your website"** — paste in your `generator.html` URL from step 1.
-5. Click **Create link**, then copy the resulting Payment Link URL (looks like `https://buy.stripe.com/xxxx`).
-6. Send that link back to Claude and it'll wire it into the `Get started` button on `site/index.html` (currently points directly at `generator.html` as a placeholder for testing).
-
-(Simplified from 3 products to 1, and fulfillment automated via a self-serve generator instead of manual delivery — both on 2026-09-10, see `DECISIONS.md`.)
-
-**If Stripe asks for business verification first:** the link may work in a pending/test state — usable once verification clears (often same day).
+## 2. Payment — see HANDOFF.md, not Stripe
+Switched from Stripe to **Lemon Squeezy** on 2026-09-13 (less new-account verification friction for a solo seller — see `DECISIONS.md`). Full setup steps are in `HANDOFF.md`. Once you have the Lemon Squeezy checkout link, send it to Claude and it'll wire it into the `Get started` button on `index.html` (currently points directly at `generator.html` as a placeholder for testing) and set the redirect-after-purchase to the live GitHub Pages generator URL above.
 
 ## 3. First outreach — Reddit (primary channel, ~15–20 min, do this first)
 Reddit beats Facebook for the time you have: no group-approval wait (Facebook groups can take hours-to-days, sometimes never), no per-group rule-reading before you can post, and better search. See `DECISIONS.md` (2026-09-11) for the full comparison.

@@ -1,6 +1,6 @@
 # Customer Intake Questionnaire
 
-**Superseded as a manual process by `site/generator.html` (2026-09-10, see DECISIONS.md)** — this question set is now the spec the generator's form fields are built from, not a form to send customers by email. Update here first, then mirror the change into `generator.html`.
+**Superseded as a manual process by `generator.html` (2026-09-10, see DECISIONS.md)** — this question set is now the spec the generator's form fields are built from, not a form to send customers by email. Update here first, then mirror the change into `generator.html`.
 
 Original manual-process note (kept for reference): use this exact question set (as a Google Form / Tally form, or copy-pasted into an email/DM). Every field feeds directly into the appeal letter and evidence checklist.
 

@@ -4,7 +4,7 @@
 TikTok Shop sellers whose shop or listings just got suspended/removed for a policy violation. They pay because: (1) the account is often their entire income (avg seller revenue ~$4,200/mo, 23% earn $5K+/mo — MARKET.md §2), (2) TikTok's own process is opaque and slow, (3) every day suspended is lost revenue, and (4) the only existing paid alternative (Amazon-style law firms) costs $750–$1,495 and isn't TikTok-specific.
 
 ## The offer (see PRODUCT.md for full spec)
-**Single SKU: Appeal Rescue Kit — $39 one-time.** Seller fills a short form in `site/generator.html`; instantly (no wait, no human step) they receive: (a) a plain-English diagnosis of exactly which policy was violated and why, (b) a checklist of the specific evidence TikTok's appeal process requires for that violation type, (c) a customized, ready-to-submit appeal letter. (Originally launched at $149 with DIY/$39 and Priority/$249 tiers; simplified to one SKU, then repriced to $39 — see DECISIONS.md for both changes.)
+**Single SKU: Appeal Rescue Kit — $39 one-time.** Seller fills a short form in `generator.html`; instantly (no wait, no human step) they receive: (a) a plain-English diagnosis of exactly which policy was violated and why, (b) a checklist of the specific evidence TikTok's appeal process requires for that violation type, (c) a customized, ready-to-submit appeal letter. (Originally launched at $149 with DIY/$39 and Priority/$249 tiers; simplified to one SKU, then repriced to $39 — see DECISIONS.md for both changes.)
 
 ## Where we find them / how we reach them
 Reddit (r/TikTokShop and similar), TikTok Shop seller Facebook groups, and direct replies to sellers who *publicly post* "my shop got suspended/deactivated" (highest-intent, lowest-competition channel — reply with genuine help + a soft offer, not a cold pitch). See `MARKETING.md` for the actual post/DM copy.
@@ -22,7 +22,7 @@ Reddit (r/TikTokShop and similar), TikTok Shop seller Facebook groups, and direc
 
 **Costs (per order):**
 - Payment processing (Stripe, ~2.9%+$0.30): ~$1.43 on $39 → **net ~$37.57**
-- Fulfillment cost: **$0** — `site/generator.html` is deterministic client-side logic, no AI API call, no human time.
+- Fulfillment cost: **$0** — `generator.html` is deterministic client-side logic, no AI API call, no human time.
 - **Gross margin: ~96%.**
 
 ## ⚠️ Honest read: $39 makes the $10K/3–6-week target much less plausible, not more
